@@ -1,0 +1,31 @@
+{
+  "name": "object-detection",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/server.js",
+  "scripts": {
+    "test": "jest --verbose --runInBand",
+    "dev": "npx nodemon"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/jest": "^24.0.23",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "@tensorflow-models/coco-ssd": "^2.0.1",
+    "@tensorflow/tfjs-node": "^1.4.0",
+    "@tensorflow/tfjs-node-gpu": "^1.4.0",
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "jest": {
+    "preset": "ts-jest"
+  }
+}
