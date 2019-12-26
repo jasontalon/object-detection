@@ -11,7 +11,8 @@ import bodyParser from "body-parser";
   app.use(bodyParser.json());
   app.set("json spaces", 2);
 
-  const engine = await new Engine().setModel("mobilenet_v2").loadModel();
+  const engine = await new Engine()
+    .loadModel("mobilenet_v2");
 
   app.post("/predict", async function(req, res) {
     const { imageUrl } = req.body,

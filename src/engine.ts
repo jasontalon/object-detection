@@ -20,19 +20,15 @@ export default class Engine {
     };
   }
 
-  setModel(model: ObjectDetectionBaseModel): Engine {
+  async loadModel(model: ObjectDetectionBaseModel): Promise<Engine> {
     this.modelConfig.base = model;
-    return this;
-  }
-
-  async loadModel(): Promise<Engine> {
     this.model = new ObjectDetection(this.modelConfig.base!);
     await this.model.load();
     return this;
   }
 
   async predict(imageUrl: string): Promise<Engine> {
-    const { data : imageData } = await Axios.get(imageUrl, { responseType: "arraybuffer" });
+    const { data : imageData } = await Axios.get(imageUrl, { responseType :"arraybuffer" });
 
     const tensor: any = tf.node.decodeImage(new Uint8Array(imageData));
 
