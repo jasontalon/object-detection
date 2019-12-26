@@ -1,10 +1,11 @@
-FROM nikolaik/python-nodejs:python3.8-nodejs13-alpine
+FROM nikolaik/python-nodejs:python3.8-nodejs13
 
 WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install
+RUN apt-get update && apt-get install make \
+ && npm install
 
 COPY . /usr/src/app
 
