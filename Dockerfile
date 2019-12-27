@@ -4,8 +4,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN apt-get update && apt-get install make \
- && npm install
+RUN npm install
 
 COPY . /usr/src/app
 

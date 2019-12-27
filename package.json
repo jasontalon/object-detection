@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --verbose --runInBand",
     "dev": "npx nodemon",
-	"tsc" : "tsc"
+	"tsc" : "tsc",
+	"start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
