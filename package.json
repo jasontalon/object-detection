@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest --verbose --runInBand",
     "dev": "npx nodemon",
-	"tsc" : "tsc",
-	"start": "node dist/server.js"
+    "tsc": "tsc",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +22,7 @@
   "dependencies": {
     "@tensorflow-models/coco-ssd": "^2.0.1",
     "@tensorflow/tfjs-node": "^1.4.0",
+    "atob": "^2.1.2",
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1"

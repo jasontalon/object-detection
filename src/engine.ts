@@ -1,4 +1,5 @@
 import * as tf from "@tensorflow/tfjs-node";
+const atob = require("atob");
 import {
   ModelConfig,
   ObjectDetectionBaseModel,
@@ -27,12 +28,37 @@ export default class Engine {
     return this;
   }
 
-  async predict(imageUrl: string): Promise<Engine> {
-    const { data : imageData } = await Axios.get(imageUrl, { responseType :"arraybuffer" });
+  async predict(data: string): Promise<Engine> {
+    const isUrl = data.includes("http");
 
-    const tensor: any = tf.node.decodeImage(new Uint8Array(imageData));
+    const tensor: any = tf.node.decodeImage(
+      new Uint8Array(
+        isUrl
+          ? await (<any>this.getBase64Image(data))
+          : this.convertBase64ToBinary(data)
+      )
+    );
 
     this.detectedObject = await this.model?.detect(tensor);
     return this;
+  }
+
+  async getBase64Image(url: string) {
+    const { data } = await Axios.get(url, {
+      responseType: "arraybuffer"
+    });
+
+    return data;
+  }
+
+  convertBase64ToBinary(base64: any) {
+    var raw = atob(base64);
+    var rawLength = raw.length;
+    var array = new Uint8Array(new ArrayBuffer(rawLength));
+
+    for (let i = 0; i < rawLength; i++) {
+      array[i] = raw.charCodeAt(i);
+    }
+    return array;
   }
 }
