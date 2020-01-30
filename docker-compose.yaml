@@ -3,6 +3,7 @@ services:
   api:
     build: ./
     ports: 
-    - 5005:8080
+    - 5003:9000
+    restart: always
     
 

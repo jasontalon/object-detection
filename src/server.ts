@@ -4,7 +4,7 @@ import Engine from "./engine";
 
 +(async function() {
   const app = express(),
-    { PORT = 8080 } = process.env;
+    { PORT = 9000 } = process.env;
 
   app.use(express.json({ limit: "10mb" }));
 
@@ -25,5 +25,6 @@ import Engine from "./engine";
 
   app.listen(PORT, () => {
     log(`listens to port ${PORT}`);
+    if(process.send) process.send("ready");    
   });
 })();
